@@ -4,8 +4,9 @@ import { Hero } from '~/components/sections/home/hero'
 import { Work } from '~/components/sections/home/work'
 import { Writing } from '~/components/sections/home/writing'
 import { getHome } from '~/lib/graphql/queries/home'
-import { getLocale } from '~/lib/lang'
+import { DEFAULT_LANG, getLocale, type SupportedLang } from '~/lib/lang'
 import type { Route } from './+types/home'
+import { createMeta } from '~/lib/seo'
 
 export async function loader({ params }: Route.LoaderArgs) {
   const locales = getLocale(params.lang)
@@ -46,6 +47,29 @@ export async function loader({ params }: Route.LoaderArgs) {
       entries: data?.writingEntries ?? [],
     },
   }
+}
+
+export function meta({ matches, params }: Route.MetaArgs) {
+  const rootData = matches.find((match) => match?.id === 'root')?.loaderData as
+    | {
+        lang: SupportedLang
+        siteConfig: {
+          siteTitle: string
+          siteDescription: string
+        }
+      }
+    | undefined
+
+  const lang = rootData?.lang ?? params.lang ?? DEFAULT_LANG
+  const siteTitle = rootData?.siteConfig.siteTitle ?? 'Alvaro Castle'
+
+  return createMeta({
+    lang,
+    title: siteTitle,
+    description: rootData?.siteConfig.siteDescription ?? '',
+    path: `/${lang}`,
+    siteName: siteTitle,
+  })
 }
 
 export default function Home() {
