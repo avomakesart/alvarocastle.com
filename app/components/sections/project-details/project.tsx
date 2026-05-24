@@ -21,8 +21,8 @@ export const Project = ({
   const { meta, body } = caseStudy
 
   return (
-    <div className="grid grid-cols-[1fr_200px] border-t border-b">
-      <main className="space-y-12 border-r py-12 pr-10">
+    <div className="grid md:grid-cols-[1fr_200px] border-t border-b">
+      <main className="space-y-12 md:border-r py-12 md:pr-10">
         {body && (
           <RichText
             content={body}

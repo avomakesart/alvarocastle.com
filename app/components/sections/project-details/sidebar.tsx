@@ -4,7 +4,7 @@ import type { CaseStudyMeta } from './types'
 
 export const Sidebar = ({ meta }: { meta: CaseStudyMeta }) => {
   return (
-    <aside className="space-y-8 px-6 py-12">
+    <aside className="space-y-8 md:px-6 py-12">
       <MetaGroup label="Company" value={meta.company} />
       <MetaGroup label="Period" value={meta.period} />
       <MetaGroup label="Role" value={meta.role} />
