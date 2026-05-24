@@ -1,14 +1,79 @@
-import { Button } from "~/components/ui/button"
+import { useLoaderData } from 'react-router'
+import { Experience } from '~/components/sections/home/experience'
+import { Hero } from '~/components/sections/home/hero'
+import { Work } from '~/components/sections/home/work'
+import { Writing } from '~/components/sections/home/writing'
+import { getHome } from '~/lib/graphql/queries/home'
+import { getLocale } from '~/lib/lang'
+import type { Route } from './+types/home'
+
+export async function loader({ params }: Route.LoaderArgs) {
+  const locales = getLocale(params.lang)
+  const data = await getHome({ variables: { first: 1, locales: [locales] } })
+
+  const home = data?.homes[0]
+
+  const experience = (home?.experienceCompanies ?? []).map((company, i) => ({
+    company,
+    role: home?.experienceRoles[i] ?? '',
+    dateRange: home?.experienceDateRanges[i] ?? '',
+    logoUrl: home?.experienceLogoUrls[i] ?? '',
+  }))
+
+  return {
+    hero: {
+      title: home?.heroTitle,
+      subtitle: home?.heroSubtitle,
+      description: home?.heroDescription,
+      githubUrl: home?.githubUrl,
+      twitterUrl: home?.twitterUrl,
+      linkedinUrl: home?.linkedinUrl,
+    },
+    experience: {
+      sectionTitle: home?.experienceSectionTitle,
+      entries: experience,
+    },
+    work: {
+      sectionTitle: home?.workSectionTitle,
+      allWorkLabel: home?.allWorkLabel,
+      allWorkUrl: home?.allWorkUrl,
+      entries: data?.workEntries ?? [],
+    },
+    writing: {
+      sectionTitle: home?.writingSectionTitle,
+      allWritingLabel: home?.allWritingLabel,
+      allWritingUrl: home?.allWritingLabel,
+      entries: data?.writingEntries ?? [],
+    },
+  }
+}
 
 export default function Home() {
+  const { hero, experience, work, writing } = useLoaderData<typeof loader>()
+
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
+    <div className="container m-auto flex min-h-svh w-full p-6 md:max-w-5xl">
+      <div className="flex w-full min-w-0 flex-col gap-4 text-sm leading-loose">
+        <Hero
+          data={{
+            ...hero,
+            socials: [
+              { label: 'Github', href: hero?.githubUrl },
+              { label: 'X', href: hero?.twitterUrl },
+              {
+                label: 'Linkedin',
+                href: hero?.linkedinUrl,
+              },
+            ],
+          }}
+        />
+        <div className="flex flex-col items-start gap-16">
+          <Experience
+            sectionTitle={experience?.sectionTitle}
+            experiences={experience.entries}
+          />
+          <Work data={work} />
+          <Writing data={writing} />
         </div>
       </div>
     </div>
