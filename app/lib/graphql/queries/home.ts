@@ -29,7 +29,12 @@ export const GET_HOME = graphql(`
       workSectionTitle
       writingSectionTitle
     }
-    workEntries(first: 2, locales: $locales, where: { published: true }, orderBy: order_ASC) {
+    workEntries(
+      first: 2
+      locales: $locales
+      where: { published: true }
+      orderBy: order_ASC
+    ) {
       id
       title
       slug
@@ -38,7 +43,12 @@ export const GET_HOME = graphql(`
       lead
       stack
     }
-    writingEntries(first: 2, locales: $locales, where: { published: true }, orderBy: date_DESC) {
+    writingEntries(
+      first: 2
+      locales: $locales
+      where: { published: true }
+      orderBy: date_DESC
+    ) {
       title
       slug
       date

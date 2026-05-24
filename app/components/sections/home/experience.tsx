@@ -52,7 +52,9 @@ function ExperienceItem({ company, role, logoUrl, dateRange }: ExperienceItem) {
             <div className="text-sm font-medium">
               {Array.isArray(company) ? company.join(' / ') : company}
             </div>
-            <div className="text-sm text-muted-foreground max-w-96 md:max-w-full">{role}</div>
+            <div className="max-w-96 text-sm text-muted-foreground md:max-w-full">
+              {role}
+            </div>
           </div>
         </div>
         <div className="text-sm text-muted-foreground">{dateRange}</div>

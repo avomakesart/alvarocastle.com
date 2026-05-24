@@ -17,7 +17,7 @@ import { DEFAULT_LANG, getLocale, type SupportedLang } from '~/lib/lang'
 import { createMeta } from '~/lib/seo'
 import type { Route } from './+types/contact'
 import type { ActionData, FieldErrors } from '~/lib/types'
-import { emailRegex } from '~/lib/utils'
+import { emailRegex, verifyTurnstile } from '~/lib/utils'
 
 export async function action({ request, params }: ActionFunctionArgs) {
   const form = await request.formData()
@@ -27,6 +27,41 @@ export async function action({ request, params }: ActionFunctionArgs) {
   const message = String(form.get('message') ?? '').trim()
   const lang = params.lang ?? 'en'
   const isEnglish = lang === 'en'
+
+  // Turnstile config section
+  const turnstileToken = String(form.get('cf-turnstile-response') ?? '')
+
+  if (!turnstileToken) {
+    return data<ActionData>(
+      {
+        ok: false,
+        errors: {
+          captcha: isEnglish
+            ? 'Please complete the verification.'
+            : 'Por favor completa la verificación.',
+        },
+      },
+      { status: 400 }
+    )
+  }
+
+  const turnstileOk = await verifyTurnstile(turnstileToken)
+
+  if (!turnstileOk) {
+    return data<ActionData>(
+      {
+        ok: false,
+        errors: {
+          captcha: isEnglish
+            ? 'Verification failed. Please try again.'
+            : 'La verificación falló. Por favor intenta de nuevo.',
+        },
+      },
+      { status: 400 }
+    )
+  }
+
+  // Form errros section
 
   const errors: FieldErrors = {}
 

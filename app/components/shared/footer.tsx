@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 
-export const Footer = ({  slogan }: { slogan?: string | null }) => {
+export const Footer = ({ slogan }: { slogan?: string | null }) => {
   return (
     <footer className="relative mx-auto mt-8 py-6 text-muted-foreground before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-border/64">
       <div className="container flex w-full items-center justify-center gap-2 px-4 sm:px-6">

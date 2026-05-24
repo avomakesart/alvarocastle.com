@@ -3,15 +3,15 @@ import {
   type RichTextProps,
 } from '@graphcms/rich-text-react-renderer'
 import { ArrowUpRight } from 'lucide-react'
-import { Form as RRForm, useParams } from 'react-router'
+import { Form, useParams } from 'react-router'
 import { Button } from '~/components/ui/button'
 import { Field, FieldLabel } from '~/components/ui/field'
-import { Form } from '~/components/ui/form'
 import { Input } from '~/components/ui/input'
 import { Separator } from '~/components/ui/separator'
 import { Spinner } from '~/components/ui/spinner'
 import { Textarea } from '~/components/ui/textarea'
-import type { ActionData, FieldErrors } from '~/lib/types'
+import type { ActionData } from '~/lib/types'
+import { TurnstileWidget } from './turnstile-widget'
 
 interface ContactFormType {
   id: string
@@ -64,7 +64,7 @@ export const ContactForm = ({
   }
 
   return (
-    <RRForm
+    <Form
       method="post"
       action={`/${lang}/contact`}
       noValidate
@@ -109,8 +109,12 @@ export const ContactForm = ({
         {isFormInvalid && actionData?.errors.message && (
           <p className="text-xs text-red-600">{actionData?.errors.message}</p>
         )}
+        {isFormInvalid && actionData?.errors?.captcha && (
+          <p className="text-xs text-red-600">{actionData.errors.captcha}</p>
+        )}
+        <TurnstileWidget />
       </div>
-      <div className="mt-7 flex items-center justify-between">
+      <div className="flex items-center justify-between">
         <Button type="submit" size="lg" disabled={submitting} variant="default">
           {submitting ? (
             <>
@@ -127,7 +131,7 @@ export const ContactForm = ({
           {labels.replyMessage}
         </span>
       </div>
-    </RRForm>
+    </Form>
   )
 }
 

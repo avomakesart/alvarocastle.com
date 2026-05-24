@@ -18,6 +18,7 @@ export type FieldErrors = {
   email?: string
   message?: string
   form?: string
+  captcha?: string
 }
 
 export type ActionData =

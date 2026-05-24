@@ -40,8 +40,12 @@ export function LanguageSwithcher({
         <MenuGroup>
           <MenuGroupLabel>{menuGroupLabel[lang as 'en' | 'es']}</MenuGroupLabel>
           <MenuRadioGroup value={lang} onValueChange={changeLanguage}>
-            <MenuRadioItem value="en" closeOnClick>English</MenuRadioItem>
-            <MenuRadioItem value="es" closeOnClick>Español</MenuRadioItem>
+            <MenuRadioItem value="en" closeOnClick>
+              English
+            </MenuRadioItem>
+            <MenuRadioItem value="es" closeOnClick>
+              Español
+            </MenuRadioItem>
           </MenuRadioGroup>
         </MenuGroup>
       </MenuPopup>

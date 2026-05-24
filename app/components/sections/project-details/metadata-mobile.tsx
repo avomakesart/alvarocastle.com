@@ -4,7 +4,7 @@ import type { CaseStudyMeta } from './types'
 
 export const MetadataMobile = ({ meta }: { meta: CaseStudyMeta }) => {
   return (
-    <div className="flex flex-col border-t space-y-8 py-8 md:hidden">
+    <div className="flex flex-col space-y-8 border-t py-8 md:hidden">
       <div className="grid grid-cols-2 gap-4 md:hidden">
         <MetaGroup label="Company" value={meta.company} />
         <MetaGroup label="Period" value={meta.period} />
