@@ -23,6 +23,7 @@ export async function loader({ params }: Route.LoaderArgs) {
   }
 
   return {
+    backButtonLabel: workEntry.backButtonLabel,
     hero: {
       tag: workEntry?.tag ?? '',
       title: workEntry?.title ?? '',
@@ -64,12 +65,12 @@ export function meta({ matches, params, loaderData }: Route.MetaArgs) {
 }
 
 export default function ProjectDetails() {
-  const { hero, caseStudy } = useLoaderData<typeof loader>()
+  const { hero, caseStudy, backButtonLabel } = useLoaderData<typeof loader>()
   return (
     <div className="container m-auto flex min-h-svh w-full p-6 md:max-w-5xl">
       <div className="flex w-full min-w-0 flex-col gap-4 text-sm leading-loose">
         <Button render={<Link to="/work" />} variant="link" className="mr-auto">
-          <ArrowLeft /> Work
+          <ArrowLeft /> {backButtonLabel}
         </Button>
         <Hero tag={hero.tag} title={hero.title} lead={hero.lead} />
         <Project caseStudy={caseStudy} />

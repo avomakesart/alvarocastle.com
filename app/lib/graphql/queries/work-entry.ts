@@ -9,6 +9,7 @@ export const GET_WORK_ENTRIES = graphql(`
       date
       id
       lead
+      backButtonLabel
       locale
       order
       published

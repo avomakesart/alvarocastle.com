@@ -8,10 +8,21 @@ export function PostRow({ post }: { post: PostSummary }) {
   const { lang } = useParams()
 
   const inner = (
-    <div className="group grid grid-cols-[120px_1fr_auto] items-start gap-6 border-b px-8 py-7 transition-colors hover:bg-accent/50">
-      <div className="pt-0.75">
-        <p className="mb-2 text-xs">{published ? date : 'Coming'}</p>
-        <p className="text-xs">{published ? readingTime : '— min'}</p>
+    <div className="group grid items-start gap-6 border-b px-8 py-7 transition-colors hover:bg-accent/50 md:grid-cols-[120px_1fr_auto]">
+      <div className="flex items-start justify-between">
+        <div className="pt-0.75">
+          <p className="mb-2 text-xs">{published ? date : 'Coming'}</p>
+          <p className="text-xs">{published ? readingTime : '— min'}</p>
+        </div>
+        <span
+          className={`inline-block pt-1 text-[16px] transition-all md:hidden ${
+            published
+              ? 'group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-foreground'
+              : 'opacity-30'
+          }`}
+        >
+          <ArrowUpRight className="size-4" />
+        </span>
       </div>
 
       <div>
@@ -27,7 +38,7 @@ export function PostRow({ post }: { post: PostSummary }) {
       </div>
 
       <span
-        className={`inline-block pt-1 text-[16px] transition-all ${
+        className={`hidden pt-1 text-[16px] transition-all md:inline-block ${
           published
             ? 'group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-foreground'
             : 'opacity-30'

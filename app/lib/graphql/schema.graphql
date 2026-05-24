@@ -13595,6 +13595,7 @@ type WorkEntry implements Node & Entity {
   "Tesla · 2023 – 2026"
   """
   tag: String
+  backButtonLabel: String
   company: String!
 
   """
@@ -13754,6 +13755,9 @@ input WorkEntryCreateInput {
 
   """tag input for default locale (en)"""
   tag: String
+
+  """backButtonLabel input for default locale (en)"""
+  backButtonLabel: String
   company: String!
   date: String
 
@@ -13783,6 +13787,7 @@ input WorkEntryCreateLocalizationDataInput {
   createdAt: DateTime
   title: String!
   tag: String
+  backButtonLabel: String
   role: String
   scope: String
   lead: String!
@@ -14073,6 +14078,8 @@ enum WorkEntryOrderByInput {
   slug_DESC
   tag_ASC
   tag_DESC
+  backButtonLabel_ASC
+  backButtonLabel_DESC
   company_ASC
   company_DESC
   date_ASC
@@ -14098,6 +14105,9 @@ input WorkEntryUpdateInput {
 
   """tag input for default locale (en)"""
   tag: String
+
+  """backButtonLabel input for default locale (en)"""
+  backButtonLabel: String
   company: String
   date: String
 
@@ -14123,6 +14133,7 @@ input WorkEntryUpdateInput {
 input WorkEntryUpdateLocalizationDataInput {
   title: String
   tag: String
+  backButtonLabel: String
   role: String
   scope: String
   lead: String
@@ -14177,6 +14188,9 @@ input WorkEntryUpdateManyInput {
 
   """tag input for default locale (en)"""
   tag: String
+
+  """backButtonLabel input for default locale (en)"""
+  backButtonLabel: String
   company: String
   date: String
 
@@ -14202,6 +14216,7 @@ input WorkEntryUpdateManyInput {
 input WorkEntryUpdateManyLocalizationDataInput {
   title: String
   tag: String
+  backButtonLabel: String
   role: String
   scope: String
   lead: String
@@ -14480,6 +14495,34 @@ input WorkEntryWhereInput {
 
   """All values not ending with the given string"""
   tag_not_ends_with: String
+  backButtonLabel: String
+
+  """Any other value that exists and is not equal to the given value."""
+  backButtonLabel_not: String
+
+  """All values that are contained in given list."""
+  backButtonLabel_in: [String]
+
+  """All values that are not contained in given list."""
+  backButtonLabel_not_in: [String]
+
+  """All values containing the given string."""
+  backButtonLabel_contains: String
+
+  """All values not containing the given string."""
+  backButtonLabel_not_contains: String
+
+  """All values starting with the given string."""
+  backButtonLabel_starts_with: String
+
+  """All values not starting with the given string."""
+  backButtonLabel_not_starts_with: String
+
+  """All values ending with the given string."""
+  backButtonLabel_ends_with: String
+
+  """All values not ending with the given string"""
+  backButtonLabel_not_ends_with: String
   company: String
 
   """Any other value that exists and is not equal to the given value."""
@@ -15629,6 +15672,7 @@ type WritingEntry implements Node & Entity {
   id: ID!
   title: String!
   slug: String!
+  backButtonLabel: String
   date: Date!
 
   """
@@ -15783,6 +15827,9 @@ input WritingEntryCreateInput {
   """title input for default locale (en)"""
   title: String!
   slug: String!
+
+  """backButtonLabel input for default locale (en)"""
+  backButtonLabel: String
   date: Date!
 
   """readingTime input for default locale (en)"""
@@ -15811,6 +15858,7 @@ input WritingEntryCreateLocalizationDataInput {
   updatedAt: DateTime
   createdAt: DateTime
   title: String!
+  backButtonLabel: String
   readingTime: String
   tags: [String!]
   excerpt: String!
@@ -16039,6 +16087,8 @@ enum WritingEntryOrderByInput {
   title_DESC
   slug_ASC
   slug_DESC
+  backButtonLabel_ASC
+  backButtonLabel_DESC
   date_ASC
   date_DESC
   readingTime_ASC
@@ -16057,6 +16107,9 @@ input WritingEntryUpdateInput {
   """title input for default locale (en)"""
   title: String
   slug: String
+
+  """backButtonLabel input for default locale (en)"""
+  backButtonLabel: String
   date: Date
 
   """readingTime input for default locale (en)"""
@@ -16081,6 +16134,7 @@ input WritingEntryUpdateInput {
 
 input WritingEntryUpdateLocalizationDataInput {
   title: String
+  backButtonLabel: String
   readingTime: String
   tags: [String!]
   excerpt: String
@@ -16133,6 +16187,9 @@ input WritingEntryUpdateManyInlineInput {
 input WritingEntryUpdateManyInput {
   """title input for default locale (en)"""
   title: String
+
+  """backButtonLabel input for default locale (en)"""
+  backButtonLabel: String
   date: Date
 
   """readingTime input for default locale (en)"""
@@ -16157,6 +16214,7 @@ input WritingEntryUpdateManyInput {
 
 input WritingEntryUpdateManyLocalizationDataInput {
   title: String
+  backButtonLabel: String
   readingTime: String
   tags: [String!]
   excerpt: String
@@ -16408,6 +16466,34 @@ input WritingEntryWhereInput {
 
   """All values not ending with the given string"""
   slug_not_ends_with: String
+  backButtonLabel: String
+
+  """Any other value that exists and is not equal to the given value."""
+  backButtonLabel_not: String
+
+  """All values that are contained in given list."""
+  backButtonLabel_in: [String]
+
+  """All values that are not contained in given list."""
+  backButtonLabel_not_in: [String]
+
+  """All values containing the given string."""
+  backButtonLabel_contains: String
+
+  """All values not containing the given string."""
+  backButtonLabel_not_contains: String
+
+  """All values starting with the given string."""
+  backButtonLabel_starts_with: String
+
+  """All values not starting with the given string."""
+  backButtonLabel_not_starts_with: String
+
+  """All values ending with the given string."""
+  backButtonLabel_ends_with: String
+
+  """All values not ending with the given string"""
+  backButtonLabel_not_ends_with: String
   date: Date
 
   """Any other value that exists and is not equal to the given value."""

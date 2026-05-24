@@ -1,13 +1,12 @@
-import { Markdown } from '~/components/shared/markdown'
-import { DiagramIllustration } from './diagram-illustration'
-import { Section } from './section'
-import { Sidebar } from './sidebar'
-import type { CaseStudy } from './types'
 import {
   RichText,
   type RichTextProps,
 } from '@graphcms/rich-text-react-renderer'
 import { extractCodeContent, type CustomEmbeds } from '~/lib/richtext'
+import { DiagramIllustration } from './diagram-illustration'
+import { MetadataMobile } from './metadata-mobile'
+import { Sidebar } from './sidebar'
+import type { CaseStudy } from './types'
 
 const CUSTOM_EMBEDS: CustomEmbeds = {
   'diagram:system': <DiagramIllustration />,
@@ -21,8 +20,8 @@ export const Project = ({
   const { meta, body } = caseStudy
 
   return (
-    <div className="grid md:grid-cols-[1fr_200px] border-t border-b">
-      <main className="space-y-12 md:border-r py-12 md:pr-10">
+    <div className="grid border-t border-b md:grid-cols-[1fr_200px]">
+      <main className="space-y-12 py-12 md:border-r md:pr-10">
         {body && (
           <RichText
             content={body}
@@ -37,7 +36,10 @@ export const Project = ({
                 )
               },
               p: ({ children }) => (
-                <p className="mb-4 pt-4 text-sm last:mb-4">{children}</p>
+                <p className="mb-4 pt-4 text-base last:mb-4">{children}</p>
+              ),
+              ul: ({ children }) => (
+                <ul className="mb-2.5 list-disc pl-6 text-base">{children}</ul>
               ),
               h2: (props) => (
                 <h2
@@ -60,7 +62,7 @@ export const Project = ({
           />
         )}
       </main>
-
+      <MetadataMobile meta={meta} />
       <Sidebar meta={meta} />
     </div>
   )

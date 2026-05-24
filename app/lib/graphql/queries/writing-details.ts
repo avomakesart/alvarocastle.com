@@ -10,6 +10,7 @@ export const GET_WRITING_ENTRY = graphql(`
       stage
       tags
       slug
+      backButtonLabel
       updatedAt
       readingTime
       publishedAt(variation: LOCALIZATION)

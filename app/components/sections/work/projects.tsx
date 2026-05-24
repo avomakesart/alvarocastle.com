@@ -31,10 +31,23 @@ function ProjectRow({ project }: { project: ProjectType }) {
 
   const inner = (
     <div className="group grid items-start gap-6 border-b px-8 py-7 transition-colors hover:bg-accent md:grid-cols-[180px_1fr_auto]">
-      <div className="pt-1">
-        <p className="mb-1 text-xs tracking-widest uppercase">{tag}</p>
-        <p className="text-xs">{company}</p>
-        <p className="mt-1 text-xs">{date}</p>
+      <div className="flex items-start justify-between">
+        <div className="pt-1">
+          <p className="mb-1 text-xs tracking-widest uppercase">{tag}</p>
+          <p className="text-xs">{company}</p>
+          <p className="mt-1 text-xs">{date}</p>
+        </div>
+        <div className="pt-1.5">
+          {isClickable ? (
+            <span className="inline-block text-base transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-foreground md:hidden">
+              <ArrowUpRight className="size-5" />
+            </span>
+          ) : (
+            <Badge size="default" variant="outline" className="p-2.5">
+              Soon
+            </Badge>
+          )}
+        </div>
       </div>
 
       <div>
@@ -53,7 +66,7 @@ function ProjectRow({ project }: { project: ProjectType }) {
 
       <div className="pt-1.5">
         {isClickable ? (
-          <span className="inline-block text-base transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-foreground">
+          <span className="hidden text-base transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-foreground md:inline-block">
             <ArrowUpRight className="size-5" />
           </span>
         ) : (

@@ -20,6 +20,7 @@ export async function loader({ params }: Route.LoaderArgs) {
   })
 
   return {
+    backButtonLabel: writingEntry?.backButtonLabel,
     hero: {
       tags: writingEntry?.tags,
       date: dateFormatter({
@@ -59,7 +60,7 @@ export function meta({ matches, params, loaderData }: Route.MetaArgs) {
 }
 
 export default function WritingDetails() {
-  const { hero, post } = useLoaderData<typeof loader>()
+  const { hero, post, backButtonLabel } = useLoaderData<typeof loader>()
   return (
     <div className="container m-auto flex min-h-svh w-full p-6 md:max-w-5xl">
       <div className="flex w-full min-w-0 flex-col gap-4 text-sm leading-loose">
@@ -68,7 +69,7 @@ export default function WritingDetails() {
           variant="link"
           className="mr-auto"
         >
-          <ArrowLeft /> Writing
+          <ArrowLeft /> {backButtonLabel}
         </Button>
         <Hero {...hero} />
         <Separator />
