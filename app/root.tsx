@@ -5,7 +5,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useRouteLoaderData
+  useRouteLoaderData,
 } from 'react-router'
 
 import { Footer } from '~/components/shared/footer'
@@ -18,14 +18,36 @@ import {
   DEFAULT_LANG,
   getLocale,
   isSupportedLang,
-  redirectToLocalizedPath
+  redirectToLocalizedPath,
 } from './lib/lang'
+import { Analytics } from '@vercel/analytics/react'
 
 export function links() {
   return [
     {
       rel: 'stylesheet',
       href: 'https://api.fonts.coollabs.io/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap',
+    },
+    {
+      rel: 'apple-touch-icon',
+      sizes: '180x180',
+      href: '/apple-touch-icon.png',
+    },
+    {
+      rel: 'icon',
+      type: 'image/png',
+      sizes: '32x32',
+      href: '/favicon-32x32.png',
+    },
+    {
+      rel: 'icon',
+      type: 'image/png',
+      sizes: '16x16',
+      href: '/favicon-16x16.png',
+    },
+    {
+      rel: 'manifest',
+      href: '/site.webmanifest',
     },
   ]
 }
@@ -55,31 +77,13 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { siteConfig, navItems , lang } = useRouteLoaderData('root')
+  const { siteConfig, navItems, lang } = useRouteLoaderData('root')
 
   return (
     <html lang={lang}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/site.webmanifest" />
         <Meta />
         <Links />
         <script
@@ -96,7 +100,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             {siteConfig ? <Footer slogan={siteConfig.footer} /> : null}
           </div>
         </ThemeProvider>
-
+        <Analytics />
         <ScrollRestoration />
         <Scripts />
       </body>
