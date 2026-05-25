@@ -83,7 +83,7 @@ export default function Home() {
             ...hero,
             socials: [
               { label: 'Github', href: hero?.githubUrl },
-              { label: 'X', href: hero?.twitterUrl },
+              { label: 'Twitter / X', href: hero?.twitterUrl },
               {
                 label: 'Linkedin',
                 href: hero?.linkedinUrl,
