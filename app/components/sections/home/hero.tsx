@@ -20,7 +20,7 @@ export const Hero = ({ data }: { data: HeroProps }) => {
           <Fragment key={social.label}>
             <Button
               variant="link"
-              className="px-0 text-lg"
+              className="px-0"
               render={
                 <a
                   href={social.href ?? ''}
@@ -33,7 +33,7 @@ export const Hero = ({ data }: { data: HeroProps }) => {
             </Button>
             <Separator
               orientation="vertical"
-              className="h-5 bg-accent-foreground last:hidden"
+              className="h-5 w-4 bg-accent-foreground last:hidden"
             />
           </Fragment>
         ))}

@@ -21,7 +21,7 @@ export function PostRow({ post }: { post: PostSummary }) {
               : 'opacity-30'
           }`}
         >
-          <ArrowUpRight className="size-4" />
+          <ArrowUpRight className="size-5" />
         </span>
       </div>
 
@@ -44,7 +44,7 @@ export function PostRow({ post }: { post: PostSummary }) {
             : 'opacity-30'
         }`}
       >
-        <ArrowUpRight className="size-4" />
+        <ArrowUpRight className="size-5" />
       </span>
     </div>
   )

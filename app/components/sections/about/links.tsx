@@ -17,7 +17,7 @@ export const Links = ({
           <Button
             key={link.label}
             variant="link"
-            className="px-0 text-lg"
+            className="px-0 text-base"
             render={
               <a
                 href={link.href ? link.href : undefined}

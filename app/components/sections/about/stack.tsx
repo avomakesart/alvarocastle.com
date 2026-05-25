@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { SectionHeader } from '~/components/shared/section-header'
+import { Badge } from '~/components/ui/badge'
 import { type StackItem } from '~/lib/types'
 
 export const Stack = ({
@@ -36,7 +37,13 @@ function StackItem({ title, technologies }: Partial<StackItem>) {
           {title}
         </span>
       </div>
-      <div className="text-base">{technologies?.join(' · ')}</div>
+      <div className="flex flex-wrap gap-2">
+        {technologies?.map((tech) => (
+          <Badge key={tech} variant="secondary" size="lg">
+            {tech}
+          </Badge>
+        ))}
+      </div>
     </div>
   )
 }
