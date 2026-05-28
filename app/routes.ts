@@ -15,4 +15,5 @@ export default [
     route('writing/:postId', 'routes/writing-details.tsx'),
     route('contact', 'routes/contact.tsx'),
   ]),
+  route('/api/likes/:slug', 'routes/api.like.$slug.ts'),
 ] satisfies RouteConfig
